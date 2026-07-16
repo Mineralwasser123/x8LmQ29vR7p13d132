@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>❤️ Unser Wiedersehen ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+    background:
+    linear-gradient(
+        180deg,
+        #15162b,
+        #30224f,
+        #ff8fab
+    );
+
+    color:white;
+}
+
+
+/* Sterne */
+
+.stars{
+
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
+
+}
+
+.star{
+
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    background:white;
+
+    border-radius:50%;
+
+    animation:
+    twinkle 3s infinite alternate;
+
+}
+
+
+@keyframes twinkle{
+
+    from{
+        opacity:.2;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+/* Herzen */
+
+.hearts{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+}
+
+
+.heart{
+
+    position:absolute;
+
+    bottom:-50px;
+
+    animation:
+    float linear infinite;
+
+    opacity:.8;
+
+}
+
+
+@keyframes float{
+
+
+    from{
+
+        transform:
+        translateY(0)
+        rotate(0deg);
+
+    }
+
+
+    to{
+
+        transform:
+        translateY(-120vh)
+        rotate(360deg);
+
+    }
+
+}
+
+
+
+/* Hauptkarte */
+
+
+.container{
+
+    width:92%;
+
+    max-width:420px;
+
+
+    padding:30px 20px;
+
+
+    background:
+    rgba(255,255,255,.15);
+
+
+    backdrop-filter:
+    blur(15px);
+
+
+    border-radius:30px;
+
+
+    text-align:center;
+
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.3);
+
+
+}
+
+
+/* Herz */
+
+.big-heart{
+
+    font-size:65px;
+
+    animation:
+    heartbeat 1.8s infinite;
+
+    margin-bottom:10px;
+
+}
+
+
+@keyframes heartbeat{
+
+
+    0%{
+        transform:scale(1);
+    }
+
+
+    50%{
+        transform:scale(1.15);
+    }
+
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+
+h1{
+
+    font-size:28px;
+
+    margin-bottom:10px;
+
+}
+
+
+.date{
+
+    opacity:.9;
+
+    margin-bottom:25px;
+
+}
+
+
+
+/* Countdown */
+
+
+.countdown{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:12px;
+
+}
+
+
+
+.box{
+
+    background:
+    rgba(255,255,255,.15);
+
+
+    border-radius:20px;
+
+
+    padding:15px 5px;
+
+
+}
+
+
+
+.number{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+}
+
+
+.label{
+
+    font-size:13px;
+
+    opacity:.85;
+
+}
+
+
+
+/* Fortschritt */
+
+
+.progress-title{
+
+    margin-top:25px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.progress{
+
+    height:12px;
+
+    width:100%;
+
+    background:
+    rgba(255,255,255,.25);
+
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+
+.progress-bar{
+
+    height:100%;
+
+    width:0%;
+
+    background:
+    white;
+
+
+    border-radius:20px;
+
+    transition:.5s;
+
+}
+
+
+
+.message{
+
+    margin-top:25px;
+
+    font-size:16px;
+
+    line-height:1.5;
+
+}
+
+
+.sunrise{
+
+    margin-top:15px;
+
+    font-size:14px;
+
+    opacity:.9;
+
+}
+
+
+.visit{
+
+    margin-top:20px;
+
+    font-size:11px;
+
+    opacity:.6;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="stars"></div>
+
+<div class="hearts"></div>
+
+
+<div class="container">
+
+
+<div class="big-heart">
+❤️
+</div>
+
+
+<h1>
+Bis wir uns wiedersehen
+</h1>
+
+
+<div class="date">
+Donnerstag, 23. Juli 2026<br>
+15:30 Uhr
+</div>
+
+
+
+<div class="countdown">
+
+
+<div class="box">
+<div class="number" id="days">0</div>
+<div class="label">Tage</div>
+</div>
+
+
+<div class="box">
+<div class="number" id="hours">0</div>
+<div class="label">Stunden</div>
+</div>
+
+
+<div class="box">
+<div class="number" id="minutes">0</div>
+<div class="label">Minuten</div>
+</div>
+
+
+<div class="box">
+<div class="number" id="seconds">0</div>
+<div class="label">Sekunden</div>
+</div>
+
+
+</div>
+
+
+
+<div class="progress-title">
+Unser Weg bis dahin ❤️
+</div>
+
+
+<div class="progress">
+
+<div class="progress-bar" id="progress"></div>
+
+</div>
+
+
+<div class="sunrise" id="sunrise"></div>
+
+
+<div class="message">
+
+Jede Sekunde bringt uns näher. ❤️
+
+<br>
+
+Ich freue mich schon riesig auf dich 🥰
+
+</div>
+
+
+<div class="visit" id="visit"></div>
+
+
+</div>
+<script>
+
+
+// ==========================
+// Countdown Ziel
+// ==========================
+
+const targetDate = new Date(
+    "2026-07-23T15:30:00"
+).getTime();
+
+
+const startDate = new Date(
+    "2026-07-16T00:00:00"
+).getTime();
+
+
+
+// ==========================
+// Countdown aktualisieren
+// ==========================
+
+function updateCountdown(){
+
+    const now = new Date().getTime();
+
+    const distance = targetDate - now;
+
+
+    if(distance <= 0){
+
+        showFinished();
+
+        return;
+
+    }
+
+
+    const days = Math.floor(
+        distance / (1000*60*60*24)
+    );
+
+
+    const hours = Math.floor(
+        (distance % (1000*60*60*24))
+        /(1000*60*60)
+    );
+
+
+    const minutes = Math.floor(
+        (distance % (1000*60*60))
+        /(1000*60)
+    );
+
+
+    const seconds = Math.floor(
+        (distance % (1000*60))
+        /1000
+    );
+
+
+    document.getElementById("days").innerHTML = days;
+
+    document.getElementById("hours").innerHTML = hours;
+
+    document.getElementById("minutes").innerHTML = minutes;
+
+    document.getElementById("seconds").innerHTML = seconds;
+
+
+
+    updateProgress();
+
+    updateSunrise();
+
+
+}
+
+
+
+setInterval(updateCountdown,1000);
+
+updateCountdown();
+
+
+
+
+// ==========================
+// Fortschrittsbalken
+// ==========================
+
+function updateProgress(){
+
+
+    const now = new Date().getTime();
+
+
+    const total =
+    targetDate - startDate;
+
+
+    const passed =
+    now - startDate;
+
+
+    let percent =
+    (passed / total) * 100;
+
+
+    if(percent < 0)
+        percent = 0;
+
+
+    if(percent > 100)
+        percent = 100;
+
+
+
+    document.getElementById(
+        "progress"
+    ).style.width =
+    percent + "%";
+
+
+}
+
+
+
+
+// ==========================
+// Sonnenaufgänge zählen
+// ==========================
+
+function updateSunrise(){
+
+
+    const now = new Date();
+
+
+    const target =
+    new Date("2026-07-23T15:30:00");
+
+
+    const difference =
+    target.getDate()
+    -
+    now.getDate();
+
+
+
+    if(difference > 0){
+
+        document.getElementById(
+        "sunrise"
+        ).innerHTML =
+        "🌅 Noch " +
+        difference +
+        " Sonnenaufgänge bis zu unserem Treffen ❤️";
+
+    }
+
+
+}
+
+
+
+
+// ==========================
+// Schwebende Herzen
+// ==========================
+
+
+const hearts =
+document.querySelector(".hearts");
+
+
+
+for(let i=0;i<35;i++){
+
+
+    const heart =
+    document.createElement("div");
+
+
+    heart.className =
+    "heart";
+
+
+    const symbols =
+    [
+        "❤️",
+        "💕",
+        "💗",
+        "🤍"
+    ];
+
+
+    heart.innerHTML =
+    symbols[
+        Math.floor(
+        Math.random()*symbols.length
+        )
+    ];
+
+
+
+    heart.style.left =
+    Math.random()*100 + "vw";
+
+
+
+    heart.style.fontSize =
+    (15 + Math.random()*25)
+    +"px";
+
+
+
+    heart.style.animationDuration =
+    (7 + Math.random()*8)
+    +"s";
+
+
+
+    heart.style.animationDelay =
+    Math.random()*10
+    +"s";
+
+
+
+    hearts.appendChild(heart);
+
+}
+
+
+
+
+// ==========================
+// Sterne erzeugen
+// ==========================
+
+
+const stars =
+document.querySelector(".stars");
+
+
+
+for(let i=0;i<80;i++){
+
+
+    const star =
+    document.createElement("div");
+
+
+    star.className =
+    "star";
+
+
+
+    star.style.left =
+    Math.random()*100+"vw";
+
+
+
+    star.style.top =
+    Math.random()*100+"vh";
+
+
+
+    star.style.animationDelay =
+    Math.random()*5+"s";
+
+
+
+    stars.appendChild(star);
+
+}
+
+
+
+
+// ==========================
+// Letzten Besuch speichern
+// ==========================
+
+
+const visit =
+new Date();
+
+
+document.getElementById(
+"visit"
+).innerHTML =
+"❤️ Letzter Besuch: "
++
+visit.toLocaleDateString("de-DE")
++
+" "
++
+visit.toLocaleTimeString("de-DE");
+
+
+
+
+
+// ==========================
+// Countdown beendet
+// ==========================
+
+
+function showFinished(){
+
+
+document.querySelector(".container").innerHTML =
+
+`
+
+<div class="big-heart">
+❤️
+</div>
+
+
+<h1>
+Endlich zusammen!
+</h1>
+
+
+<p style="
+margin-top:20px;
+font-size:18px;
+">
+
+Der Moment ist gekommen 🥰
+
+<br><br>
+
+Ich hoffe, wir genießen jede Sekunde zusammen ❤️
+
+</p>
+
+`;
+
+
+
+createConfetti();
+
+
+}
+
+
+
+// ==========================
+// Konfetti
+// ==========================
+
+
+function createConfetti(){
+
+
+for(let i=0;i<120;i++){
+
+
+const confetti =
+document.createElement("div");
+
+
+confetti.innerHTML =
+[
+"❤️",
+"💕",
+"✨",
+"🌸"
+]
+[
+Math.floor(
+Math.random()*4
+)
+];
+
+
+confetti.style.position =
+"fixed";
+
+
+confetti.style.left =
+Math.random()*100+"vw";
+
+
+confetti.style.top =
+"-20px";
+
+
+confetti.style.fontSize =
+(15+Math.random()*20)+"px";
+
+
+confetti.style.animation =
+"fall "+(3+Math.random()*3)+"s linear";
+
+
+
+document.body.appendChild(confetti);
+
+
+
+}
+
+
+
+}
+
+
+
+
+// Konfetti Animation hinzufügen
+
+const style =
+document.createElement("style");
+
+
+style.innerHTML = `
+
+@keyframes fall {
+
+from {
+
+transform:
+translateY(0)
+rotate(0deg);
+
+}
+
+
+to {
+
+transform:
+translateY(110vh)
+rotate(360deg);
+
+}
+
+}
+
+`;
+
+
+document.head.appendChild(style);
+
+
+
+</script>
+
+
+</body>
+
+</html>
